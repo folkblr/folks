@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "721186344673",
+    "firebase_url": "https://folkapp2019-6662c.firebaseio.com",
+    "project_id": "folkapp2019-6662c",
+    "storage_bucket": "folkapp2019-6662c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721186344673:android:fd042a8a9dc9b3b2",
+        "android_client_info": {
+          "package_name": "com.creation.android.folkapp2019"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721186344673-vbqtbpk2sjall8r1e7mtf9he1eehsggr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.creation.android.folkapp2019",
+            "certificate_hash": "3ee45c38ebbeb3e23f4f5c0aa71823f0a1e97aea"
+          }
+        },
+        {
+          "client_id": "721186344673-753ag97i25su1u8cdnub9k6fun2gi62t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZontDnfLEYn4UAvagERXaxWpL9tXVMV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721186344673-753ag97i25su1u8cdnub9k6fun2gi62t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
