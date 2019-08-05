@@ -53,10 +53,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.021"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/select_berth_rg" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/request_note_et"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:layout_marginTop="6dp"
@@ -67,7 +67,7 @@
         android:hint="Type here..."
         android:inputType="textShortMessage"
         android:padding="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="@+id/select_berth_rg"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -78,10 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="send Request"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintEnd_toEndOf="@+id/request_note_et"
         app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintStart_toStartOf="@+id/request_note_et"
+        app:layout_constraintTop_toBottomOf="@+id/request_note_et" />
 
     <Button
         android:id="@+id/button5"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/send_request" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/select_berth_rg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -106,21 +106,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/upper_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Upper" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/middle_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Middle" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/lower_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "721186344673",
-    "firebase_url": "https://folkapp2019-6662c.firebaseio.com",
-    "project_id": "folkapp2019-6662c",
-    "storage_bucket": "folkapp2019-6662c.appspot.com"
+    "project_number": "1013073270270",
+    "firebase_url": "https://folkapp2019-cc4a6.firebaseio.com",
+    "project_id": "folkapp2019-cc4a6",
+    "storage_bucket": "folkapp2019-cc4a6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:721186344673:android:fd042a8a9dc9b3b2",
+        "mobilesdk_app_id": "1:1013073270270:android:fd042a8a9dc9b3b2",
         "android_client_info": {
           "package_name": "com.creation.android.folkapp2019"
         }
       },
       "oauth_client": [
         {
-          "client_id": "721186344673-vbqtbpk2sjall8r1e7mtf9he1eehsggr.apps.googleusercontent.com",
+          "client_id": "1013073270270-l3lcuuu8n3463s3s76nm6b7q4g3ckmf6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.creation.android.folkapp2019",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "721186344673-753ag97i25su1u8cdnub9k6fun2gi62t.apps.googleusercontent.com",
+          "client_id": "1013073270270-2uc4mue8uov4ju803d1pb8gf977t7hn6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDZontDnfLEYn4UAvagERXaxWpL9tXVMV0"
+          "current_key": "AIzaSyCa38nDvTGxuW8nB0O1DHQNAJy7HRNSRHw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "721186344673-753ag97i25su1u8cdnub9k6fun2gi62t.apps.googleusercontent.com",
+              "client_id": "1013073270270-2uc4mue8uov4ju803d1pb8gf977t7hn6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
