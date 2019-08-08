@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_dashboard:
-                    //fragment = new DashboardFragment();
+                    fragment = new DashboardFragment();
                     break;
 
                 case R.id.navigation_notifications:

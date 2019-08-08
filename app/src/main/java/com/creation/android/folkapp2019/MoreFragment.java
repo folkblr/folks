@@ -32,7 +32,7 @@ public class MoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentTransaction fr=getFragmentManager().beginTransaction();
-                fr.replace(R.id.main_container,new RequestAccomodation());
+                fr.replace(R.id.main_container,new RequestAccomodationFragment());
                 fr.commit();
             }
         });

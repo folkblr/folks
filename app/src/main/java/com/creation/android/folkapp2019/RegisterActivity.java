@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     final String name = mNameField.getText().toString();
-                    String email = mEmailField.getText().toString();
+                    final String email = mEmailField.getText().toString();
                     String password = mPasswordField.getText().toString();
 
                     if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
@@ -97,13 +97,13 @@ public class RegisterActivity extends AppCompatActivity {
 
                                             if(uploadTask.isSuccessful()){
 
-                                               // final String download_url = uploadTask.getResult().getDownloadUrl().toString();
                                                 final String download_url=uploadTask.getResult().getMetadata().getReference().getDownloadUrl().toString();
 
                                                 String token_id = FirebaseInstanceId.getInstance().getToken();
 
                                                 Map<String, Object> userMap = new HashMap<>();
                                                 userMap.put("name", name);
+                                                userMap.put("email", email);
                                                 userMap.put("image", download_url);
                                                 userMap.put("token_id", token_id);
 

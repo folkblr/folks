@@ -23,7 +23,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button sign_out_btn;
     private FirebaseFirestore mFireStore;
-    private String mUserId;
+    private String user_id;
     private String mUserName;
     TextView profile_name,email;
     ImageView profile_image_iv;
@@ -40,14 +40,14 @@ public class Profile extends AppCompatActivity {
         mFireStore=FirebaseFirestore.getInstance();
         sign_out_btn=findViewById(R.id.sign_out);
 
-        mUserId=mAuth.getCurrentUser().getUid();
+        user_id=mAuth.getCurrentUser().getUid();
         mUserName=mAuth.getCurrentUser().getDisplayName();
 
-        mFireStore.collection("Users").document(mUserId).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        mFireStore.collection("Users").document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String user_name=documentSnapshot.getString("name");
-                String user_image=documentSnapshot.getString("image");
+                //String user_image=documentSnapshot.getString("image");
                 String user_email=documentSnapshot.getString("email");
 
                 profile_name.setText(user_name);
@@ -72,7 +72,7 @@ public class Profile extends AppCompatActivity {
                 Map<String, Object> tokenMapRemove = new HashMap<>();
                 tokenMapRemove.put("token_id", FieldValue.delete());
 
-                mFireStore.collection("Users").document(mUserId).update(tokenMapRemove).addOnSuccessListener(new OnSuccessListener<Void>() {
+                mFireStore.collection("Users").document(user_id).update(tokenMapRemove).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 

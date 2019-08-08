@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RequestAccomodation extends Fragment {
+public class RequestAccomodationFragment extends Fragment {
 
     String[] descriptionData = {"Request", "Awating\nApproval", "Confirm\nOccupancy",};
     Button send_request;
@@ -53,7 +53,7 @@ public class RequestAccomodation extends Fragment {
     private EditText mMessageView;
     private ProgressBar mMessageProgress;
 
-    public RequestAccomodation() {
+    public RequestAccomodationFragment() {
         // Required empty public constructor
     }
 
