@@ -22,7 +22,7 @@ import java.util.Map;
 public class Profile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button sign_out_btn;
-    private FirebaseFirestore mFireStore;
+    private FirebaseFirestore db;
     private String user_id;
     private String mUserName;
     TextView profile_name,email;
@@ -37,13 +37,14 @@ public class Profile extends AppCompatActivity {
         email=findViewById(R.id.email_tv);
 
         mAuth=FirebaseAuth.getInstance();
-        mFireStore=FirebaseFirestore.getInstance();
+        db=FirebaseFirestore.getInstance();
         sign_out_btn=findViewById(R.id.sign_out);
 
-        user_id=mAuth.getCurrentUser().getUid();
-        mUserName=mAuth.getCurrentUser().getDisplayName();
+       // user_id=mAuth.getCurrentUser().getUid();
+//        mUserName=mAuth.getCurrentUser().getDisplayName();
 
-        mFireStore.collection("Users").document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        /*db.collection("FolkMember")
+                .document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String user_name=documentSnapshot.getString("name");
@@ -53,26 +54,26 @@ public class Profile extends AppCompatActivity {
                 profile_name.setText(user_name);
                 email.setText(user_email);
                 //Glide.with(Profile.this).load(user_image).into(profile_image_iv);
-                /*Glide
+                *//*Glide
                         .with(Profile.this)
                         .load(user_image)
                         .centerCrop()
                         .placeholder(R.drawable.googleg_standard_color_18)
-                        .into(profile_image_iv);*/
+                        .into(profile_image_iv);*//*
 
 
             }
-        });
+        });*/
 
         sign_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
+/*
                 Map<String, Object> tokenMapRemove = new HashMap<>();
                 tokenMapRemove.put("token_id", FieldValue.delete());
 
-                mFireStore.collection("Users").document(user_id).update(tokenMapRemove).addOnSuccessListener(new OnSuccessListener<Void>() {
+                db.collection("users").document("phone").update(tokenMapRemove).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
 
@@ -81,7 +82,11 @@ public class Profile extends AppCompatActivity {
                         startActivity(intent);
 
                     }
-                });
+                });*/
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(new Intent(Profile.this, LoginActivity.class));
             }
         });
     }

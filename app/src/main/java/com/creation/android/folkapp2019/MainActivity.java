@@ -27,24 +27,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser == null){
 
-            sendToLogin();
+            Toast.makeText(getApplicationContext(),"no user",Toast.LENGTH_LONG).show();
 
+            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
+
+            finish();
         }
 
     }
 
-    private void sendToLogin() {
-
-        Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(loginIntent);
-        finish();
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

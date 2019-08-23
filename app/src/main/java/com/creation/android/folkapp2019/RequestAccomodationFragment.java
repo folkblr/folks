@@ -1,7 +1,6 @@
 package com.creation.android.folkapp2019;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -43,7 +42,7 @@ public class RequestAccomodationFragment extends Fragment {
     RadioGroup select_berth_rg;
     RadioButton berth_rb;
     private String berth = "";
-    private FirebaseFirestore mFirestore;
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     private String mUserName;
@@ -66,15 +65,15 @@ public class RequestAccomodationFragment extends Fragment {
         super.onAttach(context);
         mContext = context;
     }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFirestore = FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        mUserId=mAuth.getCurrentUser().getUid();
-       // mUserName=mAuth.getCurrentUser()
-
+        mUserId = mAuth.getCurrentUser().getUid();
+        // mUserName=mAuth.getCurrentUser()
 
 
     }
@@ -88,14 +87,16 @@ public class RequestAccomodationFragment extends Fragment {
         stateProgressBar.setStateDescriptionData(descriptionData);
 
         send_request = view.findViewById(R.id.send_request);
-        select_berth_rg =view.findViewById(R.id.select_berth_rg);
+        select_berth_rg = view.findViewById(R.id.select_berth_rg);
 
         mMessageView = (EditText) view.findViewById(R.id.request_note_et);
         // mMessageProgress = (ProgressBar) view.findViewById(R.id.messageProgress);
 
-        mFirestore = FirebaseFirestore.getInstance();
-        mUserId=mAuth.getCurrentUser().getUid();
-        mCurrentId=mAuth.getCurrentUser().getEmail();
+        db = FirebaseFirestore.getInstance();
+        mUserId = mAuth.getCurrentUser().getUid();
+        mCurrentId = mAuth.getCurrentUser().getEmail();
+        final String user_id = mAuth.getCurrentUser().getUid();
+
 
         select_berth_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -121,48 +122,48 @@ public class RequestAccomodationFragment extends Fragment {
         //Toast.makeText(getActivity(), "Berth : " + berth, Toast.LENGTH_SHORT).show();
 
 
-
-
         //mUserId =getActivity().getIntent().getStringExtra("user_id");
         //mUserName = getActivity().getIntent().getStringExtra("user_name");
 
         send_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = mMessageView.getText().toString();
+                final String message = mMessageView.getText().toString();
                 //berth = berth_rb.getText().toString();
-
-                if (!TextUtils.isEmpty(message)) {
-
                     //mMessageProgress.setVisibility(View.VISIBLE);
-
-                    Map<String, Object> notificationMessage = new HashMap<>();
-                    notificationMessage.put("message", message);
-                    notificationMessage.put("from", mCurrentId);
-                    //notificationMessage.put("Name: ",)
-                    notificationMessage.put("Berth",berth);
-
-
-                    mFirestore.collection("Users/" + mUserId + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    db.collection("FolkMember")
+                            .document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                             final String user_name = documentSnapshot.getString("name");
+                            Map<String, Object> notificationMessage = new HashMap<>();
+                            notificationMessage.put("message", message);
+                            notificationMessage.put("from", user_name);
+                            //notificationMessage.put("Name: ",)
+                            notificationMessage.put("Berth", berth);
 
-                            //Toast.makeText(requireContext(), "Notification Sent.", Toast.LENGTH_LONG).show();
-                            mMessageView.setText("");
-                           // mMessageProgress.setVisibility(View.INVISIBLE);
 
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                            db.collection("FolkMember/" + mUserId + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
 
-                            Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                            //mMessageProgress.setVisibility(View.INVISIBLE);
+                                    //Toast.makeText(requireContext(), "Notification Sent.", Toast.LENGTH_LONG).show();
+                                    mMessageView.setText("");
+                                    // mMessageProgress.setVisibility(View.INVISIBLE);
 
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+
+                                    Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    //mMessageProgress.setVisibility(View.INVISIBLE);
+
+                                }
+                            });
                         }
                     });
 
-                }
                 stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
                 FragmentTransaction fr = getFragmentManager().beginTransaction();
                 fr.replace(R.id.main_container, new ConfirmOccupancy());
