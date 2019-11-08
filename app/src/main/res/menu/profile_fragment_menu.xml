@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/Accomodation_icon_id"
+        android:icon="@drawable/white_bed_24dp"
+        android:title="Accomodation"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item2_id"
+        android:icon="@drawable/ic_looks_two_black_24dp"
+        android:title="Item2"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item3_id"
+        android:icon="@drawable/ic_looks_3_black_24dp"
+        android:title="Item2"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/more_id"
+        android:title="More" />
+
+</menu>

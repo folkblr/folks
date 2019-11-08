@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".AwatingApproval"></activity>
+        <activity android:name=".RequestAccomodationActivity" />
+        <activity android:name=".Profile" />
+        <activity android:name=".ConfirmOccupancy" />
         <activity android:name=".Splash_screen" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".OTP_folk_member" />
@@ -21,10 +24,7 @@
         <activity android:name=".Guest_signup" />
         <activity android:name=".Folk_signup" />
         <activity android:name=".Signup_method" />
-        <activity android:name=".LoginActivity">
-
-        </activity>
-
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -34,7 +34,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

@@ -43,46 +43,10 @@ public class Profile extends AppCompatActivity {
        // user_id=mAuth.getCurrentUser().getUid();
 //        mUserName=mAuth.getCurrentUser().getDisplayName();
 
-        /*db.collection("FolkMember")
-                .document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String user_name=documentSnapshot.getString("name");
-                //String user_image=documentSnapshot.getString("image");
-                String user_email=documentSnapshot.getString("email");
-
-                profile_name.setText(user_name);
-                email.setText(user_email);
-                //Glide.with(Profile.this).load(user_image).into(profile_image_iv);
-                *//*Glide
-                        .with(Profile.this)
-                        .load(user_image)
-                        .centerCrop()
-                        .placeholder(R.drawable.googleg_standard_color_18)
-                        .into(profile_image_iv);*//*
-
-
-            }
-        });*/
 
         sign_out_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-/*
-                Map<String, Object> tokenMapRemove = new HashMap<>();
-                tokenMapRemove.put("token_id", FieldValue.delete());
-
-                db.collection("users").document("phone").update(tokenMapRemove).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-
-                        mAuth.signOut();
-                        Intent intent=new Intent(Profile.this,LoginActivity.class);
-                        startActivity(intent);
-
-                    }
-                });*/
 
                 FirebaseAuth.getInstance().signOut();
                 finish();

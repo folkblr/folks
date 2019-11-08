@@ -3,7 +3,6 @@ package com.creation.android.folkapp2019;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +81,7 @@ public class RequestAccomodationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_request_accomodation, container, false);
+        final View view = inflater.inflate(R.layout.activity_request_accomodation, container, false);
         final StateProgressBar stateProgressBar = (StateProgressBar) view.findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
 
@@ -130,44 +129,45 @@ public class RequestAccomodationFragment extends Fragment {
             public void onClick(View view) {
                 final String message = mMessageView.getText().toString();
                 //berth = berth_rb.getText().toString();
-                    //mMessageProgress.setVisibility(View.VISIBLE);
-                    db.collection("FolkMember")
-                            .document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                             final String user_name = documentSnapshot.getString("name");
-                            Map<String, Object> notificationMessage = new HashMap<>();
-                            notificationMessage.put("message", message);
-                            notificationMessage.put("from", user_name);
-                            //notificationMessage.put("Name: ",)
-                            notificationMessage.put("Berth", berth);
+                //mMessageProgress.setVisibility(View.VISIBLE);
+                db.collection("FolkMember")
+                        .document(user_id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        final String user_name = documentSnapshot.getString("name");
+                        Map<String, Object> notificationMessage = new HashMap<>();
+                        notificationMessage.put("message", message);
+                        notificationMessage.put("from", user_name);
+                        //notificationMessage.put("Name: ",)
+                        notificationMessage.put("Berth", berth);
 
 
-                            db.collection("FolkMember/" + mUserId + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
+                        db.collection("FolkMember/" + mUserId + "/Notifications").add(notificationMessage).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
 
-                                    //Toast.makeText(requireContext(), "Notification Sent.", Toast.LENGTH_LONG).show();
-                                    mMessageView.setText("");
-                                    // mMessageProgress.setVisibility(View.INVISIBLE);
+                                Toast.makeText(requireContext(), "Notification Sent.", Toast.LENGTH_LONG).show();
+                                mMessageView.setText("");
+                                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
+                                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                                //fr.replace(R.id.main_container, new ConfirmOccupancy());
+                                fr.commit();
+                                // mMessageProgress.setVisibility(View.INVISIBLE);
 
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
 
-                                    Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                    //mMessageProgress.setVisibility(View.INVISIBLE);
+                                Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                //mMessageProgress.setVisibility(View.INVISIBLE);
 
-                                }
-                            });
-                        }
-                    });
+                            }
+                        });
+                    }
+                });
 
-                stateProgressBar.setCurrentStateNumber(StateProgressBar.StateNumber.TWO);
-                FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.main_container, new ConfirmOccupancy());
-                fr.commit();
+
 
             }
         });

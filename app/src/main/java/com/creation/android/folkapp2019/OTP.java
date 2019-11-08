@@ -169,7 +169,10 @@ public class OTP extends AppCompatActivity {
 
                             Log.d("Checking the data", name + email + phone + dob);
 
-                            db.collection("FolkMember").document(user_id).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            db.collection("FolkMember")
+                                    .document(user_id)
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getApplicationContext(), "Your data has been added", Toast.LENGTH_SHORT).show();
