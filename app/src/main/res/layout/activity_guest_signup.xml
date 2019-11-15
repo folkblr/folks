@@ -13,8 +13,10 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="75dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/guest_signup"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +30,11 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/et_name"
+        android:textSize="18sp"
+        android:textColor="#FF292929"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_guest_signup" />
 
@@ -41,6 +48,11 @@
         android:ems="10"
         android:inputType="phone"
         android:hint="@string/et_phone"
+        android:textSize="18sp"
+        android:textColor="#FF292929"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
@@ -54,6 +66,11 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:hint="@string/et_email"
+        android:textSize="18sp"
+        android:textColor="#FF292929"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_phone" />
 
@@ -67,6 +84,11 @@
         android:ems="10"
         android:inputType="date"
         android:hint="@string/et_dob"
+        android:textSize="18sp"
+        android:textColor="#FF292929"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
@@ -74,15 +96,48 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/btn_guest_next"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#fff"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_dob" />
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="134dp"
+        android:fontFamily="sans-serif"
+        android:text="Already a FOLK?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_dob" />
+
+    <TextView
+        android:id="@+id/sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="SIGN IN"
+        android:textColor="#FF2889FF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

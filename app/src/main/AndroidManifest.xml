@@ -7,26 +7,23 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/folk_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AwatingApproval"></activity>
-        <activity android:name=".RequestAccomodationActivity" />
-        <activity android:name=".Profile" />
-        <activity android:name=".ConfirmOccupancy" />
-        <activity android:name=".Splash_screen" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".OTP_folk_member" />
-        <activity android:name=".Set_Password" />
-        <activity android:name=".OTP" />
-        <activity android:name=".Guest_signup" />
-        <activity android:name=".Folk_signup" />
-        <activity android:name=".Signup_method" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name="com.creation.android.folkapp2019.AwatingApproval"></activity>
+        <activity android:name="com.creation.android.folkapp2019.RequestAccomodationActivity" />
+        <activity android:name="com.creation.android.folkapp2019.ConfirmOccupancy" />
+        <activity android:name="com.creation.android.folkapp2019.Splash_screen" />
+        <activity android:name="com.creation.android.folkapp2019.CalendarActivity" />
+        <activity android:name="com.creation.android.folkapp2019.OTP_folk_member" />
+        <activity android:name="com.creation.android.folkapp2019.OTP" />
+        <activity android:name="com.creation.android.folkapp2019.Guest_signup" />
+        <activity android:name="com.creation.android.folkapp2019.Folk_signup" />
+        <activity android:name="com.creation.android.folkapp2019.LoginActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.creation.android.folkapp2019.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

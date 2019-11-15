@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ public class Guest_signup extends AppCompatActivity {
 
     Button next;
     EditText et_phone,et_email,et_name, et_dob;
+    TextView signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class Guest_signup extends AppCompatActivity {
         et_email = findViewById(R.id.et_email);
         et_name = findViewById(R.id.et_name);
         et_dob = findViewById(R.id.et_dob);
+        signup = findViewById(R.id.sign_up);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +36,14 @@ public class Guest_signup extends AppCompatActivity {
                 intent.putExtra("name",et_name.getText().toString().trim());
                 intent.putExtra("dob",et_dob.getText().toString().trim());
                 startActivity(intent);
+            }
+        });
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Guest_signup.this,Folk_signup.class);
+                startActivity(i);
             }
         });
     }

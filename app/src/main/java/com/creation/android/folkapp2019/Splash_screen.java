@@ -2,14 +2,13 @@ package com.creation.android.folkapp2019;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 public class Splash_screen extends AppCompatActivity {
 
-    private static int SPLASH_TIME = 4000; // 4 seconds
+    private static int SPLASH_TIME = 2000; // 4 seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

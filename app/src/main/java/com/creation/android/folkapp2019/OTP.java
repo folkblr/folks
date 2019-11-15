@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class OTP extends AppCompatActivity {
 
     EditText et_otp;
-    String phone, codeSent, email, name, phoneNumber, dob;
+    String phone, codeSent, email, name, phoneNumber,dob;
     Button verify, email_otp, resend_otp;
     FirebaseAuth mAuth;
 
@@ -50,7 +50,7 @@ public class OTP extends AppCompatActivity {
         // Phone number according to the E.164 format
         phoneNumber = "+91 " + phone;
 
-        et_otp = findViewById(R.id.et_otp);
+        et_otp =findViewById(R.id.et_otp);
         email_otp = findViewById(R.id.btn_email_otp);
         mAuth = FirebaseAuth.getInstance();
         verify = findViewById(R.id.btn_verify);
@@ -59,6 +59,7 @@ public class OTP extends AppCompatActivity {
 
         // To send the otp to the registered mobile number
         sendVerificationCode();
+
 
 
         // To send the verification code to the user's mobile
@@ -109,39 +110,39 @@ public class OTP extends AppCompatActivity {
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            Toast.makeText(getApplicationContext(), "OTP has been sent to your registered mobile number", Toast.LENGTH_SHORT).show();
-
             // In case of auto verification of the code
             signInWithPhoneAuthCredential(phoneAuthCredential);
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(getApplicationContext(), "Verification Failed" + ' ' + e, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Verification Failed" + ' ' + e,Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
 
+            Toast.makeText(getApplicationContext(),"OTP has been sent to your registered mobile number",Toast.LENGTH_SHORT).show();
             //OTP that has been sent to the user's phone is 's'
             codeSent = s;
+            et_otp.setText(codeSent);
         }
 
         @Override
         public void onCodeAutoRetrievalTimeOut(String s) {
             super.onCodeAutoRetrievalTimeOut(s);
 
-            Toast.makeText(getApplicationContext(), "Your session has timed out", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Your session has timed out",Toast.LENGTH_SHORT).show();
         }
     };
 
     private void VerifySignInCode() {
         String codeEntered = et_otp.getText().toString().trim();
-        if (codeEntered.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Please enter the otp sent to your registered mobile number before clicking on verify", Toast.LENGTH_SHORT).show();
+        if (codeEntered.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Please enter the otp sent to your registered mobile number before clicking on verify",Toast.LENGTH_SHORT).show();
             return;
-        } else {
+        }else {
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(codeSent, codeEntered);
             signInWithPhoneAuthCredential(credential);
         }
@@ -154,11 +155,16 @@ public class OTP extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//
+//                            Toast.makeText(getApplicationContext(),"OTP has been verified"+name+email,Toast.LENGTH_SHORT).show();
+//                            Intent i = new Intent(OTP.this,Set_Password.class);
+//                            i.putExtra("name",name);
+//                            i.putExtra("phone",phoneNumber);
+//                            i.putExtra("email",email);
+//                            i.putExtra("dob",dob);
+//                            i.putExtra("flag",flag); //flag = 0   =>  guest user
+//                            startActivity(i);
+
                             // Access Cloud Firestore instance
-                            final String user_id = mAuth.getCurrentUser().getUid();
-
-
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
                             //Adding the data of the user to firestore database for guest
                             Map<String, Object> user = new HashMap<>();
@@ -169,36 +175,95 @@ public class OTP extends AppCompatActivity {
 
                             Log.d("Checking the data", name + email + phone + dob);
 
-                            db.collection("FolkMember")
-                                    .document(user_id)
-                                    .set(user)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(getApplicationContext(), "Your data has been added", Toast.LENGTH_SHORT).show();
-                                    // Moving to login activity
-                                    startActivity(new Intent(OTP.this, Splash_screen.class));
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Some error ocurred while writing to the database" + e.toString(), Toast.LENGTH_LONG).show();
-                                    Log.d("Error in data", e.toString());
 
-                                }
-                            });
-
+                            db.collection("Users")
+                                    .add(user)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+                                            Toast.makeText(getApplicationContext(), "Your data has been added", Toast.LENGTH_SHORT).show();
+                                            // Moving to login activity
+                                            startActivity(new Intent(OTP.this,MainActivity.class));
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getApplicationContext(), "Some error ocurred while writing to the database" + e.toString(), Toast.LENGTH_LONG).show();
+                                            Log.d("Error in data", e.toString());
+                                        }
+                                    });
 
                         } else {
                             // Sign in failed, display a message and update the UI
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 // The verification code entered was invalid
-                                Toast.makeText(getApplicationContext(), "The verification code entered was invalid", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"The verification code entered was invalid",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 });
-
     }
+
+
+
+//   Email verification
+
+
+
+//    private void sendEmailVerification(){
+//
+//        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+//                .setDisplayName(name)
+//                .build();
+//        user.updateProfile(profileChangeRequest)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()){
+//                            Log.d("Profile updated",user.getDisplayName());
+//                        }
+//                    }
+//                });
+//
+//
+//        user.updateEmail(email)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(getApplicationContext(),"Email account updated",Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//
+//
+//        //Sending the verification email to the user
+//        user.sendEmailVerification()
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(getApplicationContext(),"A verification email has been sent to your account",Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//
+//        // Checking if the user's email is verified
+//        if (user.isEmailVerified()) {
+//            Toast.makeText(getApplicationContext(),"Your email id has been verified successfully",Toast.LENGTH_LONG).show();
+//            Intent i = new Intent(OTP.this,Set_Password.class);
+//            i.putExtra("name",name);
+//            i.putExtra("phone",phoneNumber);
+//            i.putExtra("email",email);
+//            i.putExtra("dob",dob);
+//            i.putExtra("flag",flag); // flag = 1  =>  Folk member
+//            startActivity(i);
+//        }else {
+//            Toast.makeText(getApplicationContext(),"Your email id has  not been verified",Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 }

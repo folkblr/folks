@@ -34,5 +34,18 @@
     <string name="et_email">Email</string>
     <string name="et_dob">DOB (dd/mm/yy)</string>
     <string name="btn_guest_next">Next</string>
+
+    <!-- Spinner items for blood group   -->
+    <string name="blood_grp_prompt">Select your blood group</string>
+    <string-array name="blood_group_array">
+        <item>A+</item>
+        <item>B+</item>
+        <item>O+</item>
+        <item>AB+</item>
+        <item>A-</item>
+        <item>B-</item>
+        <item>O-</item>
+        <item>AB-</item>
+    </string-array>
 </resources>
 

@@ -19,10 +19,8 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -110,8 +108,6 @@ public class OTP_folk_member extends AppCompatActivity {
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-            Toast.makeText(getApplicationContext(),"OTP has been sent to your registered mobile number",Toast.LENGTH_SHORT).show();
-
             // In case of auto verification of the code
             signInWithPhoneAuthCredential(phoneAuthCredential);
         }
@@ -125,8 +121,10 @@ public class OTP_folk_member extends AppCompatActivity {
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
 
+            Toast.makeText(getApplicationContext(),"OTP has been sent to your registered mobile number",Toast.LENGTH_SHORT).show();
             //OTP that has been sent to the user's phone is 's'
             codeSent = s;
+            et_otp.setText(codeSent);
         }
 
         @Override
@@ -177,8 +175,30 @@ public class OTP_folk_member extends AppCompatActivity {
                             folk.put("phone", phoneNumber);
                             folk.put("dob", dob);
 
+//                            POST request to the api
+
+                            // Formatting the data as JSON before sending post request to api
+//                            JSONObject root = new JSONObject();
+//                            try {
+//                                root.put("Name",name);
+//                                root.put("MobileNo",phoneNumber);
+//                                root.put("EmailId",email);
+//                                root.put("Birthday",dob);
+//                                root.put("isFOLK","true");
+//                                root.put("FOLKId",folk_id);
+//
+//                                new SendDetails().execute("https://1-dot-harekrishna-54a39.appspot.com/member/profileRegister", root.toString());
+//                            } catch (JSONException e) {
+//                                Log.d("Error in json",e.toString());
+//                            }
+
+
+
+
+
+//                            Adding the data to firestore db
                             Log.d("Checking the data", name + email + phoneNumber + dob);
-                            db.collection("folk_app_users")
+                            db.collection("FolkMember")
                                     .add(folk)
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override

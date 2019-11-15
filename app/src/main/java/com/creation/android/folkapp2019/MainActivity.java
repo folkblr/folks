@@ -3,6 +3,8 @@ package com.creation.android.folkapp2019;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.creation.android.folkapp2019.fragments.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -11,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if(currentUser == null){
-
-            Toast.makeText(getApplicationContext(),"no user",Toast.LENGTH_LONG).show();
 
             Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(loginIntent);
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         //loading the default fragment
         loadFragment(new HomeFragment());
-        BottomNavigationView navigation =findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new MoreFragment();
                     break;
                 case R.id.navigation_Profile:
-                    fragment = new ProfileFragment();
+                    fragment = new Profile();
                     break;
             }
 

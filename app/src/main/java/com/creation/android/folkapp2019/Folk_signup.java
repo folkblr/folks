@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ public class Folk_signup extends AppCompatActivity {
 
     Button next;
     EditText et_folk_id;
+    TextView sign_up;
     String enteredfolk_id,email,name,phoneNumber,dob,folk_id;
 
     @Override
@@ -29,7 +31,7 @@ public class Folk_signup extends AppCompatActivity {
 
         next = findViewById(R.id.btn_next);
         et_folk_id = findViewById(R.id.et_folk_id);
-
+        sign_up = findViewById(R.id.sign_up);
 
 
 
@@ -43,7 +45,7 @@ public class Folk_signup extends AppCompatActivity {
                 // Access Cloud Firestore instance from Activity
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                db.collection("folk")
+                db.collection("FolkBoy")
                         .whereEqualTo("folk_id", enteredfolk_id)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -79,6 +81,14 @@ public class Folk_signup extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        sign_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Folk_signup.this,Guest_signup.class);
+                startActivity(i);
             }
         });
     }

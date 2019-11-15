@@ -14,6 +14,8 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="75dp"
         android:text="Sign up"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="21sp"
         android:textColor="#000"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,8 +29,10 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="20dp"
         android:text="Enter OTP sent to your phone"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="21sp"
         android:textColor="#000"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_sign_up" />
 
@@ -41,8 +45,29 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Enter the OTP"
+        android:textSize="18sp"
+        android:textColor="#FF292929"
+        android:fontFamily="sans-serif"
+        android:background="@drawable/rectangle"
+        android:padding="5dp"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enter_otp" />
+
+    <Button
+        android:id="@+id/btn_verify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Verify"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/et_otp"
         app:layout_constraintTop_toBottomOf="@+id/tv_enter_otp" />
 
     <TextView
@@ -51,9 +76,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:textColor="#000"
         android:text="Haven't got OTP?"
+        android:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_otp"/>
 
@@ -63,8 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="Resend OTP"
+        android:fontFamily="sans-serif-condensed"
         app:layout_constraintStart_toEndOf="@+id/tv_not_got_otp"
         app:layout_constraintTop_toBottomOf="@+id/et_otp" />
 
@@ -78,6 +105,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="or"
+        android:fontFamily="sans-serif-condensed"
         android:textColor="#000"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,19 +122,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Send OTP to email"
+        android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_or" />
 
-    <Button
-        android:id="@+id/btn_verify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="18dp"
-        android:text="Verify"
-        app:layout_constraintStart_toEndOf="@+id/et_otp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_enter_otp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
